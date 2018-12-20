@@ -23,7 +23,7 @@ import java.util.*;
  * @Description:
  **/
 
-@Controller
+//@Controller
 public class IndexContruller {
     @Autowired
     public WendaService wendaService;
