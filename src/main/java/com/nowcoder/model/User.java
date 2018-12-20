@@ -62,6 +62,11 @@ public class User {
     }
 
     public String getDescription() {
-        return "My name is " + this.name;
+        return "name : " + this.name
+                + " id : " + this.id
+                + " password : " + this.password
+                + " salt : " + this.salt
+                + " headUrl : " + this.headUrl;
     }
+
 }
