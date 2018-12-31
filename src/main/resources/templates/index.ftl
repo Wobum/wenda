@@ -70,7 +70,7 @@
                                                     <span class="label sr-only">赞同</span></button>
                                             </div>
                                             <div class="author-info">
-                                                <a href="https://nowcoder.com/people/zhao-yong-feng" data-tip="p$t$zhao-yong-feng" class="name">${vo.get("question").userId}</a>${vo.question.createdDate?string('yyyy年MM月dd日 HH:mm:ss')}</div>
+                                                <a href="/user/${vo.user.id}" data-tip="p$t$zhao-yong-feng" class="name">${vo.user.name}  </a>${vo.question.createdDate?string('yyyy年MM月dd日 HH:mm:ss')}</div>
                                             <div class="zm-item-vote-info" data-votecount="1082" data-za-module="VoteInfo">
                                                 <span class="voters text">
                                                     <a href="#" class="more text">

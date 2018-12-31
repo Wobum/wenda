@@ -13,7 +13,7 @@ import java.util.List;
  * @Author : Wobum
  * @Date : 2018/12/18 14:20
  * @Software : IntelliJ IDEA
- * @Description:
+ * @Description: 连接 Question 表
  **/
 
 @Mapper

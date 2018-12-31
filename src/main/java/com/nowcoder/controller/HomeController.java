@@ -32,24 +32,30 @@ public class HomeController {
     @Autowired
     QuestionService questionService;
 
-    @RequestMapping(path = {"/user/{userId}"},method = RequestMethod.GET)
-    public String userindex(Model model, @PathVariable(value = "userId") int userId){
-        model.addAttribute("vos",getLatestQuestions(userId,0,10));
-        return "index";
-    }
-    @RequestMapping(path = {"/","/index"},method = RequestMethod.GET)
-    public String index(Model model){
-
-        model.addAttribute("vos", getLatestQuestions(0,0,10)); // vos 传递给模板
+    @RequestMapping(path = {"/user/{userId}"}, method = RequestMethod.GET)
+    public String userindex(Model model, @PathVariable(value = "userId") int userId) {
+        model.addAttribute("vos", getLatestQuestions(userId, 0, 10));
         return "index";
     }
 
-    private List<ViewObject> getLatestQuestions(int userId,int offest, int limit){
-        List<Question> questionList = questionService.getLatestQuestions(userId,offest,limit); // 获取最新的问题列表
+    @RequestMapping(path = {"/", "/index"}, method = RequestMethod.GET)
+    public String index(Model model) {
+
+        model.addAttribute("vos", getLatestQuestions(0, 0, 10)); // vos 传递给模板
+        return "index";
+    }
+
+    @RequestMapping(path = {"/test"}, method = RequestMethod.GET)
+    public String test() {
+        return "login";
+    }
+
+    private List<ViewObject> getLatestQuestions(int userId, int offest, int limit) {
+        List<Question> questionList = questionService.getLatestQuestions(userId, offest, limit); // 获取最新的问题列表
         List<ViewObject> vos = new ArrayList<>();
-        for (Question question: questionList){ // 遍历问题列表
+        for (Question question : questionList) { // 遍历问题列表
             ViewObject viewObject = new ViewObject();
-            viewObject.setObjs("question",question); // 把每一个问题加入到 map 中
+            viewObject.setObjs("question", question); // 把每一个问题加入到 map 中
             viewObject.setObjs("user", userService.getUser(question.getUserId())); // 调用 Service 方法查询数据库，把每个问题对应的 user 加入到 map 中
             vos.add(viewObject); // 把这个 map 加入到队列中
         }

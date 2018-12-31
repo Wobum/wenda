@@ -3,14 +3,13 @@ package com.nowcoder.dao;
 import com.nowcoder.model.User;
 import org.apache.ibatis.annotations.*;
 
-import java.lang.invoke.VarHandle;
 
 
 /**
  * @Author : Wobum
  * @Date : 2018/12/17 15:29
  * @Software : IntelliJ IDEA
- * @Description:
+ * @Description: 连接 User 表
  **/
 
 @Mapper  //通过 Mapper 指定这个是与 mybatis 关联的
@@ -24,8 +23,11 @@ public interface UserDAO {
     @Insert({"insert into", TABLE_NAME, " ( ", INSERT_FIELDS, " )values(#{name}, #{password}, #{salt}, #{headUrl}) "})
     void addUser(User user);
 
-    @Select({"select ", SELECT_FIELDS, " from ", TABLE_NAME, " where id = #{id}"})
+    @Select({"select ", SELECT_FIELDS, " from ", TABLE_NAME, " where id=#{id}"})
     User selectById(@Param("id")int id);
+
+    @Select({"select ", SELECT_FIELDS, " from ", TABLE_NAME, " where name=#{name}"})
+    User selectByName(@Param("name") String name);
 
     @Update({"update ", TABLE_NAME, " set password=#{password} where id=#{id}"})
     void updatePasswordByID(@Param("id")int id, @Param("password") String password);
